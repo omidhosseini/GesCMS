@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using AutoMapper;
 using GesCMS.Data.DbContext;
 using GesCMS.Data.Entities;
+using GesCMS.Repository.Repositories;
+using GesCMS.Services.AdminServices.Inteface;
+using GesCMS.Services.AdminServices.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,6 +42,7 @@ namespace GesCMS
             })
                 .AddEntityFrameworkStores<GesCMSDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddScoped<IPageService, PageService>();
         }
 
         //private IMapper CreateMapper() =>

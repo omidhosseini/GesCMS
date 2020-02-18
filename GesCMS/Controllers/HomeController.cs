@@ -1,25 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using GesCMS.Models;
+using GesCMS.Repository.Repositories;
+using GesCMS.Services.AdminServices.Inteface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using GesCMS.Models;
+using System.Diagnostics;
 
 namespace GesCMS.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMapper _mapper;
+        private readonly IPageService _pageServcice;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IPageService pageService, IMapper mapper, IPageRepository pageRepository)
         {
             _logger = logger;
+            _mapper = mapper;
+            _pageServcice = pageService;
         }
 
-        public IActionResult Index()
+        public async System.Threading.Tasks.Task<IActionResult> IndexAsync()
         {
+            var x = await _pageServcice.GetList();
             return View();
         }
 

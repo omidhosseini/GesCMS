@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GesCMS.Repository.Repositories.BaseRepository
 {
-    class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _entities;
         private readonly GesCMSDbContext _context;
@@ -19,9 +19,9 @@ namespace GesCMS.Repository.Repositories.BaseRepository
             _context = context;
             _entities = _context.Set<T>();
         }
-        public async Task BulkInsert(IEnumerable<T> entities, CancellationToken cancellationToken)
+        public async Task BulkInsert(IEnumerable<T> entities)
         {
-            await _entities.AddRangeAsync(entities, cancellationToken);
+            await _entities.AddRangeAsync(entities);
         }
 
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
@@ -29,9 +29,9 @@ namespace GesCMS.Repository.Repositories.BaseRepository
             return _entities.Where(predicate);
         }
 
-        public async Task<IEnumerable<T>> GetList(CancellationToken cancellationToken)
+        public async Task<IEnumerable<T>> GetList()
         {
-            return await _entities.ToListAsync(cancellationToken);
+            return await _entities.ToListAsync();
         }
 
         public IQueryable<T> GetQueryable()
@@ -39,27 +39,27 @@ namespace GesCMS.Repository.Repositories.BaseRepository
             return _entities;
         }
 
-        public async Task Insert(T entity, CancellationToken cancellationToken)
+        public async Task Insert(T entity)
         {
-            await _entities.AddAsync(entity, cancellationToken);
+            await _entities.AddAsync(entity);
         }
 
-        public async Task Remove(T entity, CancellationToken cancellationToken)
+        public async Task Remove(T entity)
         {
             if (entity == null)
                 throw new Exception("entity null exception");
-            var foundEntity = await _entities.FindAsync(entity, cancellationToken);
+            var foundEntity = await _entities.FindAsync(entity);
             //if (foundEntity != null)
             //{
             //    foundEntity.IsDeleted = true;
             //}
         }
 
-        public async Task Update(T entity, CancellationToken cancellationToken)
+        public async Task Update(T entity)
         {
             if (entity == null)
                 throw new Exception("entity null exception");
-            var foundEntity = await _entities.FindAsync(entity, cancellationToken);
+            var foundEntity = await _entities.FindAsync(entity);
             if (foundEntity != null)
             {
                 _entities.Update(entity);

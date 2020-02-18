@@ -14,8 +14,4 @@
     <ProjectReference Include="..\GesCMS.ViewModels\GesCMS.ViewModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AdminServices\Services\" />
-  </ItemGroup>
-
 </Project>

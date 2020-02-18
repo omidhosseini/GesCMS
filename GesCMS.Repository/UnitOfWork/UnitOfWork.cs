@@ -1,8 +1,5 @@
 ﻿using GesCMS.Data.DbContext;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace GesCMS.Repository.UnitOfWork
@@ -33,14 +30,14 @@ namespace GesCMS.Repository.UnitOfWork
             }
         }
 
-        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public async Task<int> SaveChangesAsync()
         {
-            return await _context.SaveChangesAsync(cancellationToken);
+            return await _context.SaveChangesAsync();
         }
     }
 
     public interface IUnitOfWork : IDisposable
     {
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync();
     }
 }

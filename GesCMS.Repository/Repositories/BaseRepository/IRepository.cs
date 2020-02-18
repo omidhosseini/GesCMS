@@ -10,13 +10,13 @@ namespace GesCMS.Repository.Repositories.BaseRepository
 {
     public interface IRepository<T> 
     {
-        Task BulkInsert(IEnumerable<T> entities, CancellationToken cancellationToken);
-        Task Insert(T entity, CancellationToken cancellationToken);
-        Task Remove(T entity, CancellationToken cancellationToken);
-        Task Update(T entity, CancellationToken cancellationToken);
+        Task BulkInsert(IEnumerable<T> entities);
+        Task Insert(T entity);
+        Task Remove(T entity);
+        Task Update(T entity);
 
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
         IQueryable<T> GetQueryable();
-        Task<IEnumerable<T>> GetList(CancellationToken cancellationToken);
+        Task<IEnumerable<T>> GetList();
     }
 }

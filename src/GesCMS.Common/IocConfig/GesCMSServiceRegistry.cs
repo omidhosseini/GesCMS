@@ -1,3 +1,6 @@
+ 
+using Microsoft.Extensions.DependencyInjection;
+
 namespace GesCMS.Common.IocConfig
 {
     public static class GesCMSServiceRegistry
@@ -8,6 +11,9 @@ namespace GesCMS.Common.IocConfig
         )
         {
             // Register Services...
+
+            
+            return services;
         }
         
     }

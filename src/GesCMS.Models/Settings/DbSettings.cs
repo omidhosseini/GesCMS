@@ -1,3 +1,5 @@
+using System;
+
 namespace GesCMS.Models.Settings
 {
     public class DbSettings
